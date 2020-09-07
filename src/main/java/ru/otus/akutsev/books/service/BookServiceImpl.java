@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService{
 	@Override
 	@Transactional
 	public Book save(Book book) {
-		if (book.getId() > 0) { return bookDao.save(book); }
+		if (book.getId() > 0) { return bookDao.save(book); } //if existed book is saved
 
 		Book newBook = bookDao.save(book);
 
