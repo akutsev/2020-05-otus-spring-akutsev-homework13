@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг нашей библиотеки</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя книги</th>
+                <th>Имя автора книги</th>
+                <th>Название жанра</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+
+                <td th:text="${book.name}">Название книги</td>
+                <td th:text="${book.author.name}">Имя автора книги</td>
+                <td th:text="${book.genre.genreName}">Название жанра</td>
+
+                <td><a th:href="@{/edit(id=${book.id})}" href="edit.html">Изменить</a></td>
+
+                <td>
+                    <form id="delete-book" th:action="@{/delete(id=${book.id})}" th:method="post" th:object = ${book}>
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    <a href="save">Добавить новую книгу</a>
+</body>
+</html>
